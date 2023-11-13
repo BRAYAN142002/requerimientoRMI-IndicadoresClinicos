@@ -16,9 +16,10 @@ public class indicadoresDTO implements Serializable {
     private int tensionArterialDiastolica;
     private int frecuenciaRespiratoria;
     private int saturacionOxigeno;
-    private double temperatura;
+    private double temperatura; 
+    private PacienteDTO objPaciente;
 
-    public indicadoresDTO(int frecuenciaCardiaca, int tensionArterialSistolica, int tensionArterialDiastolica, int frecuenciaRespiratoria, int saturacionOxigeno, double temperatura) {
+    public indicadoresDTO(int frecuenciaCardiaca, int tensionArterialSistolica, int tensionArterialDiastolica, int frecuenciaRespiratoria, int saturacionOxigeno, double temperatura,PacienteDTO objPaciente) {
         this.frecuenciaCardiaca = frecuenciaCardiaca;
         this.tensionArterialSistolica = tensionArterialSistolica;
         this.tensionArterialDiastolica = tensionArterialDiastolica;
@@ -73,6 +74,14 @@ public class indicadoresDTO implements Serializable {
 
     public void setTemperatura(double temperatura) {
         this.temperatura = temperatura;
+    }
+
+    public PacienteDTO getObjPaciente() {
+        return objPaciente;
+    }
+
+    public void setObjPaciente(PacienteDTO objPaciente) {
+        this.objPaciente = objPaciente;
     }
     
     
