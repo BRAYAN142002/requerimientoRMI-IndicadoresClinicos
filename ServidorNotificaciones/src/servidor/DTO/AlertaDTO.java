@@ -1,17 +1,23 @@
 
 package servidor.DTO;
 
+import java.io.Serializable;
+
 /**
  *
  * @author brayan
  */
-public class AlertaDTO {
-    private FechaHoraDTO objFechaHora;
+public class AlertaDTO implements Serializable {
+   public FechaHoraDTO objFechaHora;
     private int puntuacion;
 
     public AlertaDTO(FechaHoraDTO objFechaHora, int puntuacion) {
         this.objFechaHora = objFechaHora;
         this.puntuacion = puntuacion;
+    }
+
+    public AlertaDTO() {
+        this.objFechaHora=new FechaHoraDTO();
     }
 
     public FechaHoraDTO getObjFechaHora() {
@@ -29,7 +35,8 @@ public class AlertaDTO {
     public void setPuntuacion(int puntuacion) {
         this.puntuacion = puntuacion;
     }
-    
+
+  
   
   
 }

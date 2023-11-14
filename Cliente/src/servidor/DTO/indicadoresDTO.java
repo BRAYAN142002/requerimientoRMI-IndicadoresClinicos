@@ -10,7 +10,7 @@ import java.io.Serializable;
  *
  * @author ledya
  */
-public class indicadoresDTO implements Serializable {
+public class IndicadoresDTO implements Serializable {
     private int frecuenciaCardiaca;
     private int tensionArterialSistolica;
     private int tensionArterialDiastolica;
@@ -19,13 +19,17 @@ public class indicadoresDTO implements Serializable {
     private double temperatura; 
     private PacienteDTO objPaciente;
 
-    public indicadoresDTO(int frecuenciaCardiaca, int tensionArterialSistolica, int tensionArterialDiastolica, int frecuenciaRespiratoria, int saturacionOxigeno, double temperatura,PacienteDTO objPaciente) {
+    public IndicadoresDTO(int frecuenciaCardiaca, int tensionArterialSistolica, int tensionArterialDiastolica, int frecuenciaRespiratoria, int saturacionOxigeno, double temperatura,PacienteDTO objPaciente) {
         this.frecuenciaCardiaca = frecuenciaCardiaca;
         this.tensionArterialSistolica = tensionArterialSistolica;
         this.tensionArterialDiastolica = tensionArterialDiastolica;
         this.frecuenciaRespiratoria = frecuenciaRespiratoria;
         this.saturacionOxigeno = saturacionOxigeno;
         this.temperatura = temperatura;
+        this.objPaciente=objPaciente;
+    }
+
+    public IndicadoresDTO() {
     }
 
     public int getFrecuenciaCardiaca() {

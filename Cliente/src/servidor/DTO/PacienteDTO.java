@@ -24,6 +24,9 @@ public class PacienteDTO implements Serializable {
         
     }
 
+    public PacienteDTO() {
+    }
+
     public int getNoHabitacion() {
         return noHabitacion;
     }

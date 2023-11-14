@@ -3,13 +3,18 @@ package servidoralertas.controladores;
 
 import java.rmi.RemoteException;
 
-import servidorNotificaciones.DTO.PacienteDTO;
+import servidor.DTO.PacienteDTO;
 import java.rmi.RemoteException;
 
 import java.rmi.server.UnicastRemoteObject;
-import servidorNotificaciones.DTO.NotificacionDTO;
-import servidorNotificaciones.controladores.Notificacion;
-import servidoralertas.DTO.IndicadoresDTO;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import servidor.DTO.IndicadoresDTO;
+import servidor.DTO.NotificacionDTO;
+
+
+import servidoralertas.repositorios.PacienteRepositorioImpl;
+import servidoralertas.repositorios.PacienteRepositorioInt;
 
 
 /**
@@ -18,12 +23,40 @@ import servidoralertas.DTO.IndicadoresDTO;
  */
 public class ControladorGestorPacientesImpl  extends UnicastRemoteObject implements ControladorGestorPacientesInt{
     private NotificacionDTO objNotificacion;
-    private Notificacion notificacion;
+    private PacienteRepositorioInt objPacienteRepositorio;
+    private     IndicadoresDTO indicadores;
+    public ControladorGestorPacientesImpl(PacienteRepositorioInt objPacienteRepositorio) throws RemoteException{
+        super();
+        this.objPacienteRepositorio=objPacienteRepositorio;
+        this.objNotificacion=new NotificacionDTO();
+        this.indicadores=new IndicadoresDTO();
+
+    }
+    @Override
+    public IndicadoresDTO enviarIndicadores(IndicadoresDTO objIndicadores) throws RemoteException {
+         String  mensaje1="La enfermera debe revisar el paciente";
+         String mensaje2="La enfermera y el medico debe veisar el paciente";
+        this.indicadores=objIndicadores;
+
+        int puntuacion=0;
+        puntuacion=verificarPuntuacion(indicadores);
+        if(puntuacion>=2){
+           this.objNotificacion.getObjFechaHora().setFechaActual(obtenerFechaActual());
+           this.objNotificacion.getObjFechaHora().setHoraActual(obtenerHoraActual());
+           this.objNotificacion.setObjPaciente(indicadores.getObjPaciente());
+           this.objPacienteRepositorio.guardarInformacionArchivo(indicadores, objNotificacion, puntuacion);
+               if(puntuacion==2){
+                   this.objNotificacion.setMensaje(mensaje1);
+               }else{
+                    this.objNotificacion.setMensaje(mensaje2);
+               }
+           this.objPacienteRepositorio.guardarNotificacion(objNotificacion);
+        }
+        return   objIndicadores;
+       
+    }
     
-    
-    
-     
-    private int determinarRangoNormalFrecuenciaCardiaca(float edad,int  frecuencia){
+    public int determinarRangoNormalFrecuenciaCardiaca(float edad,int  frecuencia){
         int puntuacion=1;
         if((edad>=0.0 && edad<=0.087) &&(frecuencia>=120 && frecuencia<=130)){
 		puntuacion=0;
@@ -129,6 +162,7 @@ public class ControladorGestorPacientesImpl  extends UnicastRemoteObject impleme
 	return puntuacion;
     }
     private int verificarPuntuacion(IndicadoresDTO objIndicadores ){
+       
       int totalPuntuacion=0;  
       if(determinarRangoNormalFrecuenciaCardiaca(objIndicadores.getObjPaciente().getEdad(),objIndicadores.getFrecuenciaCardiaca())==1){
 		totalPuntuacion++;
@@ -168,19 +202,13 @@ public class ControladorGestorPacientesImpl  extends UnicastRemoteObject impleme
 		objNotificacion.getObjIndicador().setTemperatura(-1.0);
 	}
 	return totalPuntuacion;
-      
+    
     }
 
-    @Override
-    public void enviarIndicadores(IndicadoresDTO objIndicadores) throws RemoteException {
-        IndicadoresDTO indicadores;
-        indicadores=objIndicadores;
-        if(verificarPuntuacion( indicadores)>=2){
-            
-        }
+     public  LocalDateTime obtenerHoraActual() {
+        return LocalDateTime.now();
     }
-
-  
-
-   
+    public LocalDate obtenerFechaActual() {
+        return LocalDate.now();
+    }
 }

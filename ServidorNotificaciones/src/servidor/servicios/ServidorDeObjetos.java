@@ -6,7 +6,7 @@ import servidor.utilidades.UtilidadesRegistroS;
 import servidor.utilidades.UtilidadesConsola;
 import java.rmi.RemoteException;
 import servidor.DTO.NotificacionDTO;
-import servidor.controladores.ControladorGestorNotificacionImpl;
+import servidorNotificaciones.controladores.ControladorGestorNotificacionImpl;
 /**
  *
  * @author brayan
@@ -30,7 +30,7 @@ public class ServidorDeObjetos {
         try
         {
            UtilidadesRegistroS.arrancarNS(numPuertoRMIRegistry);
-           UtilidadesRegistroS.RegistrarObjetoRemoto(objRemoto, direccionIpRMIRegistry, numPuertoRMIRegistry, "objRemotoGestorProductos");            
+           UtilidadesRegistroS.RegistrarObjetoRemoto(objRemoto, direccionIpRMIRegistry, numPuertoRMIRegistry, "objGestorNotificaciones");            
            
         } catch (Exception e)
         {

@@ -1,24 +1,30 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package servidor.DTO;
+import java.io.Serializable;
+import java.util.Date;
 
 /**
  *
- * @author brayan
+ * @author ledya
  */
-public class PacienteDTO {
+public class PacienteDTO implements Serializable {
     private int noHabitacion;
     private String nombres;
     private String apellidos;
     private float edad;
 
-    public PacienteDTO(int noHabitacion, String nombres, float edad) {
+    public PacienteDTO(int noHabitacion, String nombres, String apellidos, float edad) {
         this.noHabitacion = noHabitacion;
         this.nombres = nombres;
-        this.edad = edad;
+        this.apellidos = apellidos;
+        this.edad=edad;
+        
+    }
+
+    public PacienteDTO() {
     }
 
     public int getNoHabitacion() {
@@ -52,5 +58,10 @@ public class PacienteDTO {
     public void setEdad(float edad) {
         this.edad = edad;
     }
+
+    
+    
+
+   
     
 }

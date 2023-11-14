@@ -5,14 +5,19 @@
  */
 package servidoralertas.repositorios;
 
-import servidorNotificaciones.DTO.NotificacionDTO;
-import servidoralertas.DTO.IndicadoresDTO;
+import java.util.ArrayList;
+import servidor.DTO.AlertaDTO;
+import servidor.DTO.IndicadoresDTO;
+import servidor.DTO.NotificacionDTO;
+
 
 /**
  *
  * @author brayan
  */
 public interface PacienteRepositorioInt {
-  void guardarInformacionArchivo(IndicadoresDTO objIndicadores,NotificacionDTO objNotificacion,int puntuacion); 
-  NotificacionDTO leerInformacionArchivo(NotificacionDTO objNotificacion,int numhabitacion);
+   IndicadoresDTO GuardarIndicadores(IndicadoresDTO objIndicadores);
+  void guardarInformacionArchivo(IndicadoresDTO objIndicadores,NotificacionDTO objNotificacionint,int puntuacion); 
+   ArrayList<AlertaDTO> leerInformacionArchivo(int numhabitacion);
+    void guardarNotificacion(NotificacionDTO objNotificacion);
 }

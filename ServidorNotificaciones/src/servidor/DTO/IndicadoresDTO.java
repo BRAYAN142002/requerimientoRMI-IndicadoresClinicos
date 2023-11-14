@@ -1,29 +1,35 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package servidor.DTO;
 
+import java.io.Serializable;
+
 /**
  *
- * @author brayan
+ * @author ledya
  */
-public class IndicadoresDTO {
+public class IndicadoresDTO implements Serializable {
     private int frecuenciaCardiaca;
     private int tensionArterialSistolica;
     private int tensionArterialDiastolica;
     private int frecuenciaRespiratoria;
     private int saturacionOxigeno;
-    private double temperatura;
+    private double temperatura; 
+    private PacienteDTO objPaciente;
 
-    public IndicadoresDTO(int frecuenciaCardiaca, int tensionArterialSistolica, int tensionArterialDiastolica, int frecuenciaRespiratoria, int saturacionOxigeno, double temperatura) {
+    public IndicadoresDTO(int frecuenciaCardiaca, int tensionArterialSistolica, int tensionArterialDiastolica, int frecuenciaRespiratoria, int saturacionOxigeno, double temperatura,PacienteDTO objPaciente) {
         this.frecuenciaCardiaca = frecuenciaCardiaca;
         this.tensionArterialSistolica = tensionArterialSistolica;
         this.tensionArterialDiastolica = tensionArterialDiastolica;
         this.frecuenciaRespiratoria = frecuenciaRespiratoria;
         this.saturacionOxigeno = saturacionOxigeno;
         this.temperatura = temperatura;
+        this.objPaciente=objPaciente;
+    }
+
+    public IndicadoresDTO() {
     }
 
     public int getFrecuenciaCardiaca() {
@@ -74,5 +80,13 @@ public class IndicadoresDTO {
         this.temperatura = temperatura;
     }
 
+    public PacienteDTO getObjPaciente() {
+        return objPaciente;
+    }
+
+    public void setObjPaciente(PacienteDTO objPaciente) {
+        this.objPaciente = objPaciente;
+    }
+    
     
 }

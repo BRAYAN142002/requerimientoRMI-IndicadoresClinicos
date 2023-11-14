@@ -9,12 +9,12 @@ import java.rmi.Remote;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
-import servidoralertas.DTO.IndicadoresDTO;
-import servidorNotificaciones.DTO.PacienteDTO;
+import servidor.DTO.IndicadoresDTO;
+import servidor.DTO.PacienteDTO;
 /**
  *
  * @author brayan
  */
 public interface ControladorGestorPacientesInt extends Remote{
-      public void enviarIndicadores(IndicadoresDTO objIndicadores) throws RemoteException;
+    public IndicadoresDTO enviarIndicadores(IndicadoresDTO objIndicadores) throws RemoteException;
 }

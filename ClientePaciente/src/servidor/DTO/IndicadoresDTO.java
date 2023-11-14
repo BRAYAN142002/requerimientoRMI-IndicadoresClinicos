@@ -1,18 +1,38 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package servidor.DTO;
 
-package servidoralertas.DTO;
+import java.io.Serializable;
 
-
-public class IndicadoresDTO {
-    private PacienteDTO objPaciente;
-    private int frecuenciaCardiaca;
+/**
+ *
+ * @author brayan
+ */
+public class IndicadoresDTO implements Serializable {
+     private int frecuenciaCardiaca;
     private int tensionArterialSistolica;
     private int tensionArterialDiastolica;
     private int frecuenciaRespiratoria;
     private int saturacionOxigeno;
     private double temperatura;
+    private PacienteDTO objPaciente;
 
-    public IndicadoresDTO(PacienteDTO objPaciente, int frecuenciaCardiaca, int tensionArterialSistolica, int tensionArterialDiastolica, int frecuenciaRespiratoria, int saturacionOxigeno, double temperatura) {
+  
+
+    public IndicadoresDTO(int frecuenciaCardiaca, int tensionArterialSistolica, int tensionArterialDiastolica, int frecuenciaRespiratoria, int saturacionOxigeno, double temperatura, PacienteDTO objPaciente) {
+        this.frecuenciaCardiaca = frecuenciaCardiaca;
+        this.tensionArterialSistolica = tensionArterialSistolica;
+        this.tensionArterialDiastolica = tensionArterialDiastolica;
+        this.frecuenciaRespiratoria = frecuenciaRespiratoria;
+        this.saturacionOxigeno = saturacionOxigeno;
+        this.temperatura = temperatura;
         this.objPaciente = objPaciente;
+    }
+
+    public IndicadoresDTO(int frecuenciaCardiaca, int tensionArterialSistolica, int tensionArterialDiastolica, int frecuenciaRespiratoria, int saturacionOxigeno, double temperatura) {
         this.frecuenciaCardiaca = frecuenciaCardiaca;
         this.tensionArterialSistolica = tensionArterialSistolica;
         this.tensionArterialDiastolica = tensionArterialDiastolica;
@@ -21,12 +41,7 @@ public class IndicadoresDTO {
         this.temperatura = temperatura;
     }
 
-    public PacienteDTO getObjPaciente() {
-        return objPaciente;
-    }
-
-    public void setObjPaciente(PacienteDTO objPaciente) {
-        this.objPaciente = objPaciente;
+    public IndicadoresDTO() {
     }
 
     public int getFrecuenciaCardiaca() {
@@ -75,6 +90,14 @@ public class IndicadoresDTO {
 
     public void setTemperatura(double temperatura) {
         this.temperatura = temperatura;
+    }
+
+    public PacienteDTO getObjPaciente() {
+        return objPaciente;
+    }
+
+    public void setObjPaciente(PacienteDTO objPaciente) {
+        this.objPaciente = objPaciente;
     }
     
 }

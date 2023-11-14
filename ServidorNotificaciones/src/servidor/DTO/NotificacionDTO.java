@@ -1,29 +1,44 @@
 
 package servidor.DTO;
 
+import java.io.Serializable;
+import java.util.ArrayList;
+
 /**
  *
  * @author brayan
  */
-public class NotificacionDTO {
+public class NotificacionDTO implements Serializable{
    private FechaHoraDTO objFechaHora;
    private PacienteDTO objPaciente ;
    private IndicadoresDTO objIndicador;
-   private AlertaDTO[] objAlerta=new AlertaDTO[5];
+   private ArrayList<AlertaDTO> alertas;
    private String mensaje;
    private int cantidadAlertas;
 
-    public NotificacionDTO(FechaHoraDTO objFechaHora, PacienteDTO objPaciente, IndicadoresDTO objIndicador, String mensaje, int cantidadAlertas) {
+    public NotificacionDTO(FechaHoraDTO objFechaHora, PacienteDTO objPaciente, IndicadoresDTO objIndicador, int cantidadAlertas) {
         this.objFechaHora = objFechaHora;
         this.objPaciente = objPaciente;
         this.objIndicador = objIndicador;
-        this.mensaje = mensaje;
         this.cantidadAlertas = cantidadAlertas;
-    }
-    public NotificacionDTO(){
-        
+        this.alertas=new ArrayList<>();
     }
 
+   
+    public NotificacionDTO(){
+        this.objIndicador=new IndicadoresDTO();
+        this.objFechaHora=new FechaHoraDTO();
+        this.objPaciente=new PacienteDTO();  
+    }
+
+    public ArrayList<AlertaDTO> getAlertas() {
+        return alertas;
+    }
+
+    public void setAlertas(ArrayList<AlertaDTO> alertas) {
+        this.alertas = alertas;
+    }
+    
   
    
     public FechaHoraDTO getObjFechaHora() {
@@ -50,14 +65,7 @@ public class NotificacionDTO {
         this.objIndicador = objIndicador;
     }
 
-    public AlertaDTO[] getObjAlerta() {
-        return objAlerta;
-    }
-
-    public void setObjAlerta(AlertaDTO[] objAlerta) {
-        this.objAlerta = objAlerta;
-    }
-
+   
     public String getMensaje() {
         return mensaje;
     }

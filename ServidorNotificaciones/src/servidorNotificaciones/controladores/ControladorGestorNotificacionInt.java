@@ -1,11 +1,12 @@
 
 
-package servidor.controladores;
+package servidorNotificaciones.controladores;
 
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 import servidor.DTO.NotificacionDTO;
+
 /**
  *
  * @author brayan

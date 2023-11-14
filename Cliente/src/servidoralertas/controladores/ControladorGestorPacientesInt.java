@@ -1,12 +1,12 @@
 
 
-package servidor.controladores;
+package servidoralertas.controladores;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.List;
 import servidor.DTO.PacienteDTO;
-import servidor.DTO.indicadoresDTO;
+import servidor.DTO.IndicadoresDTO;
 
 
 
@@ -14,10 +14,8 @@ import servidor.DTO.indicadoresDTO;
 public interface ControladorGestorPacientesInt extends Remote
 {
     //Definicion del primer método remoto
-    public void enviarIndicadores(indicadoresDTO objIndicadores) throws RemoteException;
-    //cada definición del método debe especificar que puede lanzar la excepción java.rmi.RemoteException
-    
-    
+    public IndicadoresDTO enviarIndicadores(IndicadoresDTO objIndicadores) throws RemoteException;
+    //cada definición del método debe especificar que puede lanzar la excepción java.rmi.RemoteException  
 }
 
 

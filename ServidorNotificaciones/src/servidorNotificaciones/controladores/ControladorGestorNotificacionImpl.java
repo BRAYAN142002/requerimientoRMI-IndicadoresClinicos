@@ -1,5 +1,5 @@
 
-package servidor.controladores;
+package servidorNotificaciones.controladores;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
@@ -25,8 +25,8 @@ public class ControladorGestorNotificacionImpl extends UnicastRemoteObject imple
         System.out.println("Nombres y apellidos: "+objNotificacion.getObjPaciente().getNombres()
                            +""+objNotificacion.getObjPaciente().getApellidos());
         System.out.println("Edad: "+objNotificacion.getObjPaciente().getEdad());
-        System.out.println("Hora de la alerta: "+objNotificacion.getObjFechaHora());
-        System.out.println("Fecha de la alerta: "+objNotificacion.getObjFechaHora());
+        System.out.println("Hora de la alerta: "+objNotificacion.getObjFechaHora().horaActual);
+        System.out.println("Fecha de la alerta: "+objNotificacion.getObjFechaHora().fechaActual);
         System.out.println("-------------------------------------------------------");
         System.out.println("   Indicadores que generaron a alerta   ");
         System.out.println("-------------------------------------------------------");
@@ -55,7 +55,10 @@ public class ControladorGestorNotificacionImpl extends UnicastRemoteObject imple
         System.out.println("|--------------------------------------------------------------|");
         for(int indice =0;indice<objNotificacion.getCantidadAlertas();indice++){
             
-            System.out.println("");  
+            System.out.print(""+objNotificacion.getAlertas().get(indice).getObjFechaHora().fechaActual);
+            System.out.print(""+objNotificacion.getAlertas().get(indice).getObjFechaHora().horaActual);
+            System.out.print("");
+            System.out.println(""+objNotificacion.getAlertas().get(indice).getPuntuacion());
         }
         bandera=true;
         return bandera;
