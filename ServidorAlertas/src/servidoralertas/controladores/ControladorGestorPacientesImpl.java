@@ -50,6 +50,9 @@ public class ControladorGestorPacientesImpl  extends UnicastRemoteObject impleme
                }else{
                     this.objNotificacion.setMensaje(mensaje2);
                }
+              
+           this.objNotificacion.setAlertas(this.objPacienteRepositorio.leerInformacionArchivo(indicadores.getObjPaciente().getNoHabitacion()));
+            this.objNotificacion.setCantidadAlertas(this.objPacienteRepositorio.cantida());
            this.objPacienteRepositorio.guardarNotificacion(objNotificacion);
         }
         return   objIndicadores;

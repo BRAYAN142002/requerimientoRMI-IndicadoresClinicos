@@ -19,5 +19,7 @@ public interface PacienteRepositorioInt {
    IndicadoresDTO GuardarIndicadores(IndicadoresDTO objIndicadores);
   void guardarInformacionArchivo(IndicadoresDTO objIndicadores,NotificacionDTO objNotificacionint,int puntuacion); 
    ArrayList<AlertaDTO> leerInformacionArchivo(int numhabitacion);
+   
     void guardarNotificacion(NotificacionDTO objNotificacion);
+    int cantida();
 }

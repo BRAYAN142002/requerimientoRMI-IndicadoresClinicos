@@ -20,23 +20,40 @@ public class Menu {
     }
 
 
-    public void registrarPaciente() {
-        System.out.println("==Registro del paciente==");
+   private void registrarPaciente() {
+        System.out.println("== Registro de Paciente ==");
+        String nombres, apellidos;
         int noHabitacion;
         float edad;
-        String nombres, apellidos;
-        System.out.println("Digite el numerdo de Habitacion: ");
-        noHabitacion = UtilidadesConsola.leerEntero();
-        System.out.println("Digite los nombres: ");
+        while (true) {
+            System.out.println("Digite el número de habitación: ");
+            noHabitacion = UtilidadesConsola.leerEntero();
+            if (noHabitacion >= 100 && noHabitacion <= 999) {
+                break;
+            } else {
+                System.out.println("\n No. Habitación inválida \n");
+            }
+        }
+
+        System.out.print("Nombres: ");
         nombres = UtilidadesConsola.leerCadena();
-        System.out.println("Digite los apellidos: ");
+
+        System.out.print("Apellidos: ");
         apellidos = UtilidadesConsola.leerCadena();
-        System.out.println("Digite la edad: ");
-        edad = UtilidadesConsola.leerReal();
+        while (true){
+            System.out.print("Edad: ");
+            edad = UtilidadesConsola.leerReal();
+            if(edad>0){
+            break;
+            }else{
+                System.out.println("\n Edad no valida, debe ser mayor a cero");
+            }
+        }
+        
+
         objPaciente = new PacienteDTO(noHabitacion, nombres, apellidos, edad);
-
+        System.out.println("Paciente registrado exitosamente.");
     }
-
     int numAleatorioFrecuenciaCardiaca() {
         Random rand = new Random();
         return rand.nextInt(120) + 60;

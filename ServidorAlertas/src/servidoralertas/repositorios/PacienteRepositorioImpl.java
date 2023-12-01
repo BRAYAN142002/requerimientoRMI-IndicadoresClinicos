@@ -98,8 +98,9 @@ public class PacienteRepositorioImpl implements PacienteRepositorioInt {
     @Override
     public ArrayList<AlertaDTO> leerInformacionArchivo(int numHabitacion) {
        
-        
+        int cantidad=0;
         ArrayList<AlertaDTO> listaAlertas = new ArrayList<>();
+         ArrayList<AlertaDTO> alertas = new ArrayList<>();
         BufferedReader br = null;
 
         try {
@@ -109,7 +110,9 @@ public class PacienteRepositorioImpl implements PacienteRepositorioInt {
             while ((line = br.readLine()) != null) {
                 String[] parts = line.split(",");
                 int noHabitacion = Integer.parseInt(parts[0]);
-
+                System.out.println("--------");
+                System.out.println("habitacion: "+noHabitacion);
+                System.out.println("--------");
                 if (noHabitacion == numHabitacion) {
                     AlertaDTO alerta = new AlertaDTO();
 
@@ -118,12 +121,30 @@ public class PacienteRepositorioImpl implements PacienteRepositorioInt {
                     alerta.getObjFechaHora().setFechaActual(LocalDate.parse(parts[4]));
                     alerta.setPuntuacion(Integer.parseInt(parts[5])); // Ajusta el índice si es necesario
 
+                    System.out.println("fecha: "+alerta.getObjFechaHora().fechaActual);
+                     System.out.println("hora: "+alerta.getObjFechaHora().horaActual);
+                      System.out.println("fecha: "+alerta.getPuntuacion());
                     listaAlertas.add(alerta);
 
-                    if (listaAlertas.size() >= 5) {
-                        // Si ya hemos agregado las últimas 5 alertas, salimos del bucle
-                        break;
-                    }
+                    
+                    System.out.println("--------");
+                    System.out.println("Cantidad"+listaAlertas.size());
+                    System.out.println("--------");
+                    cantidad++;
+                   
+                }
+            }
+            if(cantidad>5){
+                cantidad=5;
+            }
+            int pos=0;
+            this.contador=cantidad;
+            this.objNotificacion.setCantidadAlertas(cantidad);
+            
+            for (int i = listaAlertas.size() - 1; i >= 0; i--) {
+                if(pos<5){
+                    alertas.add(listaAlertas.get(i));
+                    pos++;
                 }
             }
 
@@ -139,14 +160,14 @@ public class PacienteRepositorioImpl implements PacienteRepositorioInt {
             }
         }
 
-        return listaAlertas;
+        return alertas;
     
     }
    @Override
     public void guardarNotificacion(NotificacionDTO objNotificacion){
         
-        
-       objNotificacion.setAlertas(leerInformacionArchivo(objNotificacion.getObjPaciente().getNoHabitacion()));
+       
+      // objNotificacion.setAlertas(leerInformacionArchivo(objNotificacion.getObjPaciente().getNoHabitacion()));
         try {
             this.objRemoto.enviarNotifacion(objNotificacion);
         } catch (RemoteException ex) {
@@ -154,15 +175,11 @@ public class PacienteRepositorioImpl implements PacienteRepositorioInt {
         }
    
     }
-    
-    
-    
-    
-    
-   
-
-   
-
-    
+      @Override
+    public int cantida(){
+        
+        return this.contador;
+    }
+ 
     
 }

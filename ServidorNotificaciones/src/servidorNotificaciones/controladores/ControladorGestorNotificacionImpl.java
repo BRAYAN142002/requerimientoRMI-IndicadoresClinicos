@@ -3,6 +3,8 @@ package servidorNotificaciones.controladores;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import servidor.DTO.NotificacionDTO;
 /**
  *
@@ -19,11 +21,20 @@ public class ControladorGestorNotificacionImpl extends UnicastRemoteObject imple
     
     @Override
     public boolean enviarNotifacion(NotificacionDTO objNotificacion) throws RemoteException {
+      // LocalDateTime fechaHora = LocalDateTime.now();
+
+        // Formateo de fecha y hora
+       // DateTimeFormatter formatoFecha = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+       // DateTimeFormatter formatoHora = DateTimeFormatter.ofPattern("HH:mm:ss");
+
+        
+        
         boolean bandera=false;
+        System.out.println("");
         System.out.println("*********************Alerta Generada****************");
         System.out.println("No de habitación: "+objNotificacion.getObjPaciente().getNoHabitacion());
         System.out.println("Nombres y apellidos: "+objNotificacion.getObjPaciente().getNombres()
-                           +""+objNotificacion.getObjPaciente().getApellidos());
+                           +" "+objNotificacion.getObjPaciente().getApellidos());
         System.out.println("Edad: "+objNotificacion.getObjPaciente().getEdad());
         System.out.println("Hora de la alerta: "+objNotificacion.getObjFechaHora().horaActual);
         System.out.println("Fecha de la alerta: "+objNotificacion.getObjFechaHora().fechaActual);
@@ -50,15 +61,20 @@ public class ControladorGestorNotificacionImpl extends UnicastRemoteObject imple
         if(objNotificacion.getObjIndicador().getTemperatura()>=1)
             System.out.println("Temperatura: "+objNotificacion.getObjIndicador().getTemperatura());
         
+        
+        System.out.println("");
+        System.out.println("\t"+objNotificacion.getMensaje());
+        System.out.println("");
+        System.out.println("ultimas "+objNotificacion.getCantidadAlertas()+" alertas paciente");
+        System.out.println("");
         System.out.println("|--------------------------------------------------------------|");
         System.out.println("|Fecha de la alerta | Hora de la alerta | Puntuacion|");
         System.out.println("|--------------------------------------------------------------|");
         for(int indice =0;indice<objNotificacion.getCantidadAlertas();indice++){
             
-            System.out.print(""+objNotificacion.getAlertas().get(indice).getObjFechaHora().fechaActual);
-            System.out.print(""+objNotificacion.getAlertas().get(indice).getObjFechaHora().horaActual);
-            System.out.print("");
-            System.out.println(""+objNotificacion.getAlertas().get(indice).getPuntuacion());
+            System.out.print("|"+objNotificacion.getAlertas().get(indice).getObjFechaHora().fechaActual);
+            System.out.print("|"+objNotificacion.getAlertas().get(indice).getObjFechaHora().horaActual);
+            System.out.println("|"+objNotificacion.getAlertas().get(indice).getPuntuacion());
         }
         bandera=true;
         return bandera;
